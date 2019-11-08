@@ -4,7 +4,7 @@ plugins {
 }
 
 intellij {
-    version 'IC-2019.2'
+    version 'IU-2019.2'
     updateSinceUntilBuild false
     plugins 'git4idea'
     pluginName 'GitLabProjects'
