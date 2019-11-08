@@ -107,17 +107,12 @@ public class DummyApplication implements Application {
 
   }
 
-  @Override
-  public void saveAll(boolean isForce) {
-
-  }
 
   @Override
   public void saveSettings() {
 
   }
 
-  @Override
   public void saveSettings(boolean isForce) {
 
   }
