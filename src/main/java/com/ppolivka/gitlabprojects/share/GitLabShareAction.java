@@ -86,16 +86,16 @@ public class GitLabShareAction extends NoGitLabApiAction {
         final String name = gitLabShareDialog.getProjectName().getText();
         final String commitMessage = gitLabShareDialog.getCommitMessage().getText();
         final NamespaceDto namespace = (NamespaceDto) gitLabShareDialog.getGroupList().getSelectedItem();
-        String visibility_level = "internal";
+        int visibility_level = 10;
         boolean isPublic = false;
         if (gitLabShareDialog.getIsPrivate().isSelected()) {
-            visibility_level = "private";
+            visibility_level = 0;
         }
         if (gitLabShareDialog.getIsPublic().isSelected()) {
-            visibility_level = "public";
+            visibility_level = 20;
             isPublic = true;
         }
-        final String visibility = visibility_level;
+        final int visibility = visibility_level;
         final boolean publicity = isPublic;
 
         boolean isSsh = true;

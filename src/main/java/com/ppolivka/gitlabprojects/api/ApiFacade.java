@@ -89,7 +89,7 @@ public class ApiFacade {
         api.updateMergeRequest(project.getId(), mergeRequest.getIid(), null, user.getId(), null, null, null, null);
     }
 
-    public GitlabProject createProject(String name, String visibilityLevel, boolean isPublic, NamespaceDto namespace, String description) throws IOException {
+    public GitlabProject createProject(String name, int visibilityLevel, boolean isPublic, NamespaceDto namespace, String description) throws IOException {
         return api.createProject(
                 name,
                 namespace != null && namespace.getId() != 0 ? namespace.getId() : null,
@@ -131,7 +131,7 @@ public class ApiFacade {
 
         List<GitlabProject> projects;
         try {
-            projects = api.getMembershipProjects();
+            projects = api.getProjects();
         } catch (Throwable e) {
             projects = Collections.emptyList();
         }

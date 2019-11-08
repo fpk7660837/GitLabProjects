@@ -21,5 +21,5 @@ repositories {
 
 dependencies {
     compile group: 'commons-io', name: 'commons-io', version: '2.4'
-    compile group: 'org.gitlab', name: 'java-gitlab-api', version: '4.0.0'
+    compile group: 'org.gitlab', name: 'java-gitlab-api', version: '1.2.8'
 }
