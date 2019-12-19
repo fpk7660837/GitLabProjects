@@ -82,7 +82,7 @@ public class ApiFacade {
     }
 
     public void acceptMergeRequest(GitlabProject project, GitlabMergeRequest mergeRequest) throws IOException {
-        api.acceptMergeRequest(project, mergeRequest.getIid(), null);
+        api.acceptMergeRequest(project, mergeRequest.getId(), null);
     }
 
     public void changeAssignee(GitlabProject project, GitlabMergeRequest mergeRequest, GitlabUser user) throws IOException {
