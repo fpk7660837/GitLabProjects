@@ -40,7 +40,7 @@ public class ServerConfiguration extends DialogWrapper {
 
     protected ServerConfiguration(@Nullable GitlabServer gitlabServer) {
         super(false);
-        if(gitlabServer == null) {
+        if (gitlabServer == null) {
             this.gitlabServer = new GitlabServer();
         } else {
             this.gitlabServer = gitlabServer;
@@ -64,7 +64,7 @@ public class ServerConfiguration extends DialogWrapper {
     protected ValidationInfo doValidate() {
         final String apiUrl = apiURl.getText();
         final String tokenString = token.getText();
-        if(StringUtils.isBlank(apiUrl) && StringUtils.isBlank(tokenString)) {
+        if (StringUtils.isBlank(apiUrl) && StringUtils.isBlank(tokenString)) {
             return null;
         }
         try {
@@ -80,7 +80,9 @@ public class ServerConfiguration extends DialogWrapper {
                         } catch (UnknownHostException e) {
                             return new ValidationInfo(SettingError.SERVER_CANNOT_BE_REACHED.message(), apiURl);
                         } catch (IOException e) {
-                            return new ValidationInfo(SettingError.INVALID_API_TOKEN.message(), apiURl);
+                            return new ValidationInfo(
+                                SettingError.INVALID_API_TOKEN.message() + "with token: " + tokenString + " and url:"
+                                    + apiUrl + ", exception:" + e.getMessage(), apiURl);
                         }
                     });
                     try {
@@ -102,7 +104,7 @@ public class ServerConfiguration extends DialogWrapper {
         super.doOKAction();
         gitlabServer.setApiUrl(apiURl.getText());
         gitlabServer.setApiToken(token.getText());
-        if(StringUtils.isNotBlank(repositoryUrl.getText())) {
+        if (StringUtils.isNotBlank(repositoryUrl.getText())) {
             gitlabServer.setRepositoryUrl(repositoryUrl.getText());
         } else {
             gitlabServer.setRepositoryUrl(ApiToRepoUrlConverter.convertApiUrlToRepoUrl(apiURl.getText()));
@@ -179,7 +181,8 @@ public class ServerConfiguration extends DialogWrapper {
         ValidationInfo validationInfo = doValidate();
         if (validationInfo == null || (!validationInfo.message.equals(SettingError.NOT_A_URL.message))) {
             tokenPage.setEnabled(true);
-            tokenPage.setToolTipText("API Key can be find in your profile setting inside GitLab Server: \n" + generateHelpUrl());
+            tokenPage.setToolTipText(
+                "API Key can be find in your profile setting inside GitLab Server: \n" + generateHelpUrl());
         } else {
             tokenPage.setEnabled(false);
         }
